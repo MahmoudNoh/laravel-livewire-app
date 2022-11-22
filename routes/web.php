@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +20,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/tasks', [App\Http\Controllers\TaskController::class, 'index'])->name('task.index')->middleware('auth');
-Route::post('/tasks', [App\Http\Controllers\TaskController::class, 'store'])->name('task.store');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/tasks', [TaskController::class, 'index'])->name('task.index')->middleware('auth');
+Route::post('/tasks', [TaskController::class, 'store'])->name('task.store');
+
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->middleware('auth');
